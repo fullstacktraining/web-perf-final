@@ -1,31 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="container h-100" id="app">
+    <nav class="navbar navbar-expand fixed-top navbar-light bg-light">
+      <div class="navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <router-link tag="li" exact-active-class="active" class="nav-link" to="/">Home</router-link>
+          <router-link tag="li" exact-active-class="active" class="nav-link" to="/article">Article</router-link>
+          <router-link tag="li" exact-active-class="active" class="nav-link" to="/about">About</router-link>
+        </ul>
+      </div>
+    </nav>
+    <div class="row h-100 justify-content-center align-items-center">
+      <router-view></router-view>
     </div>
-    <router-view/>
   </div>
-</template>
+</template> 
 
+<script>
+export default {
+  name: 'app',
+}
+</script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.navbar-nav li:hover,
+.navbar-nav li.router-link-active,
+.navbar-nav li.router-link-exact-active {
+  cursor: pointer;
 }
 </style>
