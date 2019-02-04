@@ -1,0 +1,16 @@
+{
+  "name": "final-pwa-app",
+  "type": "static",
+  "static": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "files": [
+    "dist"
+  ]
+}
