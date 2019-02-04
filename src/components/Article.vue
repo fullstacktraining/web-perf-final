@@ -10,18 +10,17 @@
     <div class="card-body" style="overflow-y: auto">
       <h4 class="card-title">Winning shot in the final</h4>
       <p class="card-text">
-        In this video we can see the winning shot for the final game between Hungary and France. 
+        Two teams have prevailed in the final for the MadeUp Waterpolo Tournament. Check out the video below where the home side's final, winning shot is gorgeously placed into the top left corner of the net.
       </p>
       <p class="text-center">
-        <video controls autoplay v-if="connection === 'fast'" crossOrigin="anonymous" src="https://res.cloudinary.com/tamas-demo/video/upload/c_scale,w_550/v1547201869/web-perf/IMG_0460.mp4">
-        </video>
-        <img src="https://res.cloudinary.com/tamas-demo/video/upload/c_scale,w_550/v1547201869/web-perf/IMG_0460.jpg" v-if="connection === 'slow'" />
+        <img src="https://res.cloudinary.com/tamas-demo/video/upload/c_scale,w_550/v1547201869/web-perf/IMG_0460.jpg" v-if="connection !== 'fast'" />
+        <video muted controls autoplay v-else crossOrigin="anonymous" src="https://res.cloudinary.com/tamas-demo/video/upload/c_scale,w_550/v1547201869/web-perf/IMG_0460.mp4"></video>
       </p>
       <p class="card-text">
-        This class is only shown by the most talented players and there are no shortage of such players in both of these teams. However play 9 managed to swing in a shot in the final seconds of the game, giving his team a well deserved win.
+        In the game between Hungary and France the audience witnessed a whopping 16 goals shared by the sides. The final shot and its class is only shown by the most talented players and there are no shortage of such in both of these teams. However player #9 managed to swing in a shot in the final seconds of the game, giving his team a well deserved win.
       </p>
       <p class="card-text">
-        Here are some other photos of the game.
+        Take a look at some additional photos from the final:
         <Carousel />
       </p>
       <p class="card-text">
@@ -42,6 +41,11 @@ export default {
     Carousel
   },
   mounted: function() {
+    if ('onLine' in navigator) {
+      if (!navigator.onLine) {
+        this.connection = 'offline';
+      }
+    }
     if (navigator.connection && navigator.connection.effectiveType.length > 0) {
       switch (navigator.connection.effectiveType) {
         case 'slow-2g':
@@ -50,16 +54,18 @@ export default {
           this.connection = 'slow';
           break;
         case '4g':
-          this.connection = 'fast';
+          this.connectoin = 'fast';
           break;
+        default: 
+          this.connection = 'fast';
       }
     } else {
       if (window.screen.height / window.screen.width === 1366 / 1024) {
-        this.connection = 'fast'
+        this.connection = 'fast';
       } else if (window.screen.height / window.screen.width === 1112 / 834) {
-        this.connection = 'fast'
+        this.connection = 'fast';
       } else {
-        this.connection = 'slow'
+        this.connection = 'slow';
       }
     }
   }
